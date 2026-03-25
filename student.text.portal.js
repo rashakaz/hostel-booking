@@ -19,6 +19,16 @@ function clearFeedback() {
   feedbackBox.className = "feedback hidden";
 }
 
+function getSubmissionUrl() {
+  const isLocalEnvironment =
+    window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1";
+
+  return isLocalEnvironment
+    ? applicationForm.getAttribute("action")
+    : applicationForm.dataset.vercelAction;
+}
+
 async function parseJsonResponse(response) {
   const responseText = await response.text();
   const jsonStart = responseText.indexOf("{");
@@ -187,7 +197,7 @@ async function submitApplication(event) {
   submitButton.textContent = "Submitting...";
 
   try {
-    const response = await fetch(applicationForm.getAttribute("action"), {
+    const response = await fetch(getSubmissionUrl(), {
       method: "POST",
       body: buildFormData()
     });

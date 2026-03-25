@@ -99,7 +99,13 @@
           <h3 class="visually-hidden">Student Hostel Registration</h3>
           <p class="card-copy visually-hidden">All registration details are handled inside this single file.</p>
 
-          <form id="applicationForm" action="api/submit-application/" method="post" enctype="multipart/form-data">
+          <form
+            id="applicationForm"
+            action="submit_application.php"
+            data-vercel-action="/api/submit-application"
+            method="post"
+            enctype="multipart/form-data"
+          >
             <div class="input-grid">
               <div class="field">
                 <label for="studentName" class="visually-hidden">Student Name</label>

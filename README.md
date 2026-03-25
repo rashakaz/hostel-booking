@@ -2,7 +2,7 @@
 
 This project now supports two environments:
 
-- Local XAMPP/Apache with PHP and MySQL using `api/submit-application/index.php`
+- Local XAMPP/Apache with PHP and MySQL using `submit_application.php`
 - Vercel production using a Node.js serverless function at `api/submit-application/index.js`
 
 ## Local XAMPP
@@ -37,7 +37,12 @@ git push -u origin main
 
 ## Vercel
 
-Vercel does not run PHP directly, so production uses the Node.js function in `api/submit-application/index.js`.
+Vercel uses the Node.js function in `api/submit-application/index.js`.
+
+The frontend uses:
+
+- `submit_application.php` on `localhost`
+- `/api/submit-application` on Vercel or another deployed domain
 
 Before deploying, create:
 
