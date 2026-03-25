@@ -1,0 +1,9 @@
+{
+  "name": "hostel-booking-portal",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@vercel/blob": "^1.1.1",
+    "mysql2": "^3.14.4"
+  }
+}

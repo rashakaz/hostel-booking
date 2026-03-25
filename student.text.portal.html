@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Umma University | Student Hostel Portal</title>
+  <link rel="stylesheet" href="student.text.portal.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="brand">
+      <div class="brand-mark">UU</div>
+      <div class="brand-copy">
+        <strong>Umma University</strong>
+        <span>Student Hostel Portal</span>
+      </div>
+    </div>
+
+    <div class="nav-links">
+      <a class="nav-link" href="#home">Home</a>
+      <a class="nav-link" href="#benefits">Residence Info</a>
+      <a class="nav-link" href="#registration">Hostel Registration</a>
+      <a class="nav-cta" href="#registration">Apply Now</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="home">
+    <div class="hero-text">
+      <p class="eyebrow">Student accommodation made simple</p>
+      <h1 class="visually-hidden">Welcome to Umma University Hostels Booking</h1>
+      <p>
+        This page gives students a clear starting point for choosing hostel details, submitting sponsorship
+        or payment information, and uploading the required ID/IA file before review.
+      </p>
+      <div class="hero-actions">
+        <a class="primary-btn" href="#registration">Start Hostel Registration</a>
+        <a class="secondary-btn" href="#benefits">View Residence Guide</a>
+      </div>
+    </div>
+
+    <div class="hero-panel">
+      <h2>Ready before you submit</h2>
+      <div class="hero-list">
+        <div class="hero-list-item">Student details and registration number</div>
+        <div class="hero-list-item">Preferred hostel, wing, floor, and room</div>
+        <div class="hero-list-item">ID/IA file and sponsorship or payment details</div>
+      </div>
+      <div class="hero-badge">2026 Hostel Intake Open</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="benefits">
+      <div class="section-heading">
+        <p class="eyebrow">Booking guidelines</p>
+        <h2>Hostel booking guidelines</h2>
+        <p>Open the guidelines below before filling in your hostel application form.</p>
+        <button
+          type="button"
+          class="primary-btn guidelines-toggle"
+          id="guidelinesToggle"
+          onclick="toggleGuidelines()"
+          aria-expanded="false"
+          aria-controls="bookingGuidelines"
+        >
+          Show Booking Guidelines
+        </button>
+      </div>
+
+      <div class="cards hidden" id="bookingGuidelines">
+        <article class="card">
+          <h3>Check your details</h3>
+          <p>Use your correct student name, registration number, and university email before submitting the form.</p>
+        </article>
+        <article class="card">
+          <h3>Choose the right hostel</h3>
+          <p>Select the correct hostel, wing, floor, and room choice that matches the spaces available to you.</p>
+        </article>
+        <article class="card">
+          <h3>Prepare required documents</h3>
+          <p>Upload the ID/IA file and add sponsorship proof or payment details depending on your student type.</p>
+        </article>
+        <article class="card">
+          <h3>Wait for approval</h3>
+          <p>Review all information carefully, submit once, and wait for hostel allocation feedback after review.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="registration">
+      <div class="section-heading visually-hidden">
+        <p class="eyebrow">Hostel registration</p>
+        <h2>Apply for hostel space.</h2>
+        <p>Fill in the form below and attach the required documents before submitting your request.</p>
+      </div>
+
+      <div class="registration-layout registration-only">
+        <div class="form-card">
+          <h3 class="visually-hidden">Student Hostel Registration</h3>
+          <p class="card-copy visually-hidden">All registration details are handled inside this single file.</p>
+
+          <form id="applicationForm" action="api/submit-application/" method="post" enctype="multipart/form-data">
+            <div class="input-grid">
+              <div class="field">
+                <label for="studentName" class="visually-hidden">Student Name</label>
+                <input type="text" id="studentName" name="studentName" placeholder="Enter full name" required>
+              </div>
+              <div class="field">
+                <label for="studentReg" class="visually-hidden">Registration Number</label>
+                <input type="text" id="studentReg" name="studentReg" placeholder="Enter registration number" required>
+              </div>
+              <div class="field">
+                <label for="studentEmail" class="visually-hidden">Student Email</label>
+                <input type="email" id="studentEmail" name="studentEmail" placeholder="Enter student email" required>
+              </div>
+              <div class="field">
+                <label for="studentType" class="visually-hidden">Student Type</label>
+                <select id="studentType" name="studentType" onchange="togglePaymentOptions()" required>
+                  <option value="">-- Select Student Type --</option>
+                  <option value="AEDT">AEDT Sponsored</option>
+                  <option value="Self">Self-Sponsored</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="hostel" class="visually-hidden">Hostel</label>
+                <select id="hostel" name="hostel" required>
+                  <option value="">-- Select Hostel --</option>
+                  <option>Men</option>
+                  <option>Women</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="wing" class="visually-hidden">Wing</label>
+                <select id="wing" name="wing" required>
+                  <option value="">-- Select Wing --</option>
+                  <option>Left</option>
+                  <option>Right</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="floor" class="visually-hidden">Floor</label>
+                <select id="floor" name="floor" required>
+                  <option value="">-- Select Floor --</option>
+                  <option>Ground</option>
+                  <option>First</option>
+                  <option>Second</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="room" class="visually-hidden">Room Number</label>
+                <input type="text" id="room" name="room" placeholder="Example: 101" required>
+              </div>
+            </div>
+
+            <div class="full-span">
+              <label for="studentIdFile" class="visually-hidden">Upload ID/IA File</label>
+              <input type="file" id="studentIdFile" name="studentIdFile" accept=".pdf,.jpg,.jpeg,.png" required>
+              <p class="field-note visually-hidden">Attach your student ID card or admission document.</p>
+            </div>
+
+            <div id="aedUpload" class="sub-card hidden">
+              <h4>AEDT Sponsorship Details</h4>
+              <p class="field-note">Upload the sponsorship approval document and add any supporting message.</p>
+              <div class="field">
+                <label for="aedFile">Upload Fee Request File</label>
+                <input type="file" id="aedFile" name="aedFile" accept=".pdf,.jpg,.jpeg,.png">
+              </div>
+              <div class="field">
+                <label for="aedMessage">Supporting Message</label>
+                <textarea id="aedMessage" name="aedMessage" placeholder="Provide transaction SMS or sponsorship notes if cleared"></textarea>
+              </div>
+            </div>
+
+            <div id="selfPay" class="sub-card hidden">
+              <h4>Self-Sponsored Payment</h4>
+              <p class="field-note">Choose a payment method and provide the matching payment reference.</p>
+              <div class="field">
+                <label for="payMethod">Payment Method</label>
+                <select id="payMethod" name="payMethod" onchange="showPaymentFields()">
+                  <option value="">-- Select Payment Method --</option>
+                  <option value="mpesa">M-Pesa</option>
+                  <option value="bank">Bank</option>
+                </select>
+              </div>
+              <div id="pay-mpesa" class="field hidden">
+                <label for="payMpesaNo">M-Pesa Number</label>
+                <input type="text" id="payMpesaNo" name="paymentReferenceMpesa" placeholder="Enter M-Pesa number">
+              </div>
+              <div id="pay-bank" class="field hidden">
+                <label for="payBankNo">Bank Account Number</label>
+                <input type="text" id="payBankNo" name="paymentReferenceBank" placeholder="Enter bank account number">
+              </div>
+            </div>
+
+            <button class="submit-btn" type="submit">Submit Hostel Registration</button>
+            <div id="formFeedback" class="feedback hidden"></div>
+          </form>
+        </div>
+
+        <aside class="info-panel hidden">
+          <h3>Before you submit</h3>
+          <p>Use the checklist below to avoid incomplete hostel applications.</p>
+
+          <div class="tips">
+            <div class="tip">
+              <strong>Use official student details</strong>
+              <p>Make sure the registration number and email match your university records.</p>
+            </div>
+            <div class="tip">
+              <strong>ID/IA file is included</strong>
+              <p>The new home page form now expects the ID/IA document before submission.</p>
+            </div>
+            <div class="tip">
+              <strong>Choose the correct route</strong>
+              <p>AEDT students upload sponsorship proof, while self-sponsored students add payment details.</p>
+            </div>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-number">1</div>
+              <div>
+                <strong>Submit form</strong>
+                <p>Your application is saved to the hostel booking system for review.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-number">2</div>
+              <div>
+                <strong>Review route</strong>
+                <p>AEDT applications follow the sponsorship route and self-sponsored applications go to the warden route.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-number">3</div>
+              <div>
+                <strong>Await approval</strong>
+                <p>Status is saved as pending after submission.</p>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer hidden">
+    Welcome to Umma University Hostels Booking
+  </footer>
+
+  <script src="student.text.portal.js"></script>
+</body>
+</html>

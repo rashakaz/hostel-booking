@@ -1,0 +1,4 @@
+node_modules/
+.vercel/
+uploads/student_ids/
+uploads/sponsorships/
